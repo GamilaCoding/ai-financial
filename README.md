@@ -1,69 +1,89 @@
-# 📈 AlphaQuant AI
+#  Stock AI — Intelligent Stock Market Analysis Platform
 
-أهلاً بك في **AlphaQuant AI**!
-
-هذا المشروع باختصار هو **منصة ذكاء اصطناعي ذكية لتحليل سوق الأسهم الأمريكية**. فكر فيه كمحلل مالي شخصي (AI Analyst) شغال معاك 24/7. المنصة لا تعتمد على التخمين، بل تسحب بيانات حية وحقيقية من السوق، تحللها، وتقدر حتى تدردش معاها أو تخليها تكتب لك تقارير .
+An AI-powered financial analysis platform that acts as your personal market analyst, available 24/7. It pulls **real-time stock data**, analyzes it on the fly, and lets you chat with it or generate full financial reports — no guesswork involved.
 
 ---
 
-##  إيه اللي بيقدمه المشروع؟ (المميزات)
+## ✨ Features
 
--  **شات ذكي مع المحلل المالي (AI Agent):** تقدر تسأل الذكاء الاصطناعي أي سؤال عن الأسهم، وهو بدوره هيستخدم أدواته عشان يجيب لك بيانات حقيقية (زي أعلى الأسهم ربحاً اليوم، تاريخ سعر سهم معين، أو يحسب لك نسبة العائد على الاستثمار ROI).
--  **داشبورد للبيانات الحية:** تقدر تضيف الأسهم اللي مهتم بيها (Watchlist) وهتشوف رسم بياني (Chart) بيوضح أداء السهم خلال آخر 60 يوم بشكل مباشر وسلس.
--  **تقارير مالية محفوظة:** لو تناقشت مع الذكاء الاصطناعي ووصلت لتحليل ممتاز، تقدر تطلب منه يحفظه كـ "تقرير" عشان ترجعله في أي وقت.
--  **سريع جداً (Full-Stack):** المشروع مبني بطريقة الـ Monolith، يعني الفرونت إند والباك إند شغالين في نفس المكان بدون تعقيد السيرفرات المنفصلة.
-
----
-
-##  التقنيات المستخدمة (Tech Stack)
-
-المشروع مبني بأحدث التقنيات الموجودة حالياً عشان يضمن سرعة وأداء ممتاز:
-
-- **إطار العمل الأساسي:** [TanStack Start](https://tanstack.com/start/latest) (بيجمع بين React و Server Functions في مكان واحد).
-- **لغة البرمجة:** TypeScript .
-- **الذكاء الاصطناعي:** `@ai-sdk/google` (تحديداً موديل `gemini-1.5-flash`).
-- **مزود بيانات الأسهم:** [Polygon.io](https://polygon.io/) (للبيانات المالية الحية).
-- **قاعدة البيانات:** PostgreSQL (باستخدام درايفر `postgres` في بيئة Node.js، مع وجود بديل للعمل محلياً في الذاكرة In-Memory للتبسيط).
-- **الواجهة والتصميم:** Tailwind CSS + مكونات shadcn/ui + مكتبة Recharts للرسوم البيانية.
+- **AI Financial Agent (Chat):** Ask anything about stocks — the AI uses real tools to fetch live data, calculate ROI, and surface top market movers.
+- **Live Stock Dashboard:** Build a personal Watchlist and visualize 60-day price history with interactive charts.
+- **Saved Financial Reports:** Turn any AI conversation into a saved, reusable report you can revisit anytime.
+- **Full-Stack Monolith:** Frontend and backend live in the same codebase — no separate server setup needed.
 
 ---
 
-##  إزاي تشغل المشروع عندك محلياً؟
+## Tech Stack
 
-الموضوع بسيط جداً، اتبع الخطوات دي:
+| Layer | Technology |
+|---|---|
+| Framework | [TanStack Start](https://tanstack.com/start/latest) (React + Server Functions) |
+| Language | TypeScript |
+| AI Model | Google Gemini 1.5 Flash via `@ai-sdk/google` |
+| Stock Data | [Polygon.io](https://polygon.io/) API |
+| Database | PostgreSQL (with in-memory fallback for local dev) |
+| UI | Tailwind CSS + shadcn/ui + Recharts |
 
-### 1. تسطيب الحزم (Install Dependencies)
-افتح التيرمينال في مجلد المشروع واكتب:
+---
+
+## Getting Started
+
+### 1. Install dependencies
 ```bash
 npm install
 ```
 
-### 2. إعداد المتغيرات (Environment Variables)
-انسخ ملف `.env.example` وسميه `.env`، وبعدها ضيف المفاتيح الخاصة بيك:
+### 2. Set up environment variables
+Copy `.env.example` to `.env` and fill in your keys:
 ```env
-# مطلوب عشان الشات يشتغل (جوجل جيمني)
+# Required — powers the AI chat
 GEMINI_API_KEY="your_gemini_key_here"
 
-# اختياري: لو محتاج بيانات أسهم حقيقية
+# Optional — enables live stock data (mock data used if omitted)
 POLYGON_API_KEY="your_polygon_key_here"
 
-# اختياري: لو عندك قاعدة بيانات Postgres فعلية (لو مفيش، المشروع هيخزن البيانات في الذاكرة مؤقتاً)
+# Optional — persistent storage (in-memory used if omitted)
 DATABASE_URL="postgres://user:password@localhost:5432/dbname"
 ```
 
-### 3. تشغيل المشروع (Run the App)
-اكتب الكوماند ده عشان تشغل السيرفر المحلي:
+### 3. Run locally
 ```bash
 npm run dev
 ```
-بعدها افتح المتصفح على `http://localhost:8080` واستمتع! 🎉
+Open [http://localhost:8080](http://localhost:8080) in your browser.
 
 ---
 
-## 📝 ملاحظات للمطورين
+## 🏗 Architecture
 
-- **إزالة Supabase:** المشروع كان بيستخدم Supabase في بدايته، ولكن تم فصله بالكامل ونقلناه ليعتمد على Node.js Backend و SQL مباشر ليكون النظام مستقل وأسرع.
-- **التوافق مع Lovable:** المشروع متوافق بنسبة 100% مع منصة Lovable (AI Editor)، يعني تقدر ترفع الكود هناك وتخليه يعدل عليه بدون أي مشاكل.
+The app is built as a **Full-Stack Monolith** using TanStack Start. Server Functions are co-located with the frontend but never sent to the browser — any file ending in `.server.ts` stays server-side only.
+
+```
+Browser (React)
+    ↓
+Server Functions (TanStack Start + Nitro)
+    ↓                        ↓
+Polygon.io API          Google Gemini AI
+(Stock Data)            (Analysis + Chat)
+    ↓
+PostgreSQL / In-Memory DB
+```
+
+**AI Tools available to the agent:**
+
+| Tool | Description |
+|---|---|
+| `getStockHistory` | Fetches 60-day price history for a ticker |
+| `getTickerSnapshot` | Gets current price + daily change |
+| `getTopGainers` | Lists today's top-performing stocks |
+| `calculateROI` | Computes return on investment |
+| `saveReport` | Saves a full analysis as a report |
 
 ---
-*تم بناء هذا المشروع بشغف لتبسيط تحليل الأسهم وجعله في متناول الجميع! 🚀*
+
+## 📝 Developer Notes
+
+-Migrated to direct PostgreSQL via Node.js driver for a leaner, faster backend.
+---
+
+*Built with passion to make stock analysis accessible to everyone. 🚀*

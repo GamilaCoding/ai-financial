@@ -74,15 +74,10 @@ function SettingsPage() {
                 present={env?.polygon ?? false}
                 docsUrl="https://polygon.io/dashboard/api-keys"
               />
-              <EnvVarRow
-                label="LOVABLE_API_KEY"
-                description="Required. Routes the AI analyst agent through the Lovable AI Gateway (Gemini)."
-                present={env?.lovable ?? false}
-                docsUrl="https://docs.lovable.dev/features/ai"
-              />
+
               <EnvVarRow
                 label="GEMINI_API_KEY"
-                description="Optional. Legacy direct-Gemini integration (no longer required)."
+                description="Required. Powers the AI analyst agent."
                 present={env?.gemini ?? false}
                 docsUrl="https://aistudio.google.com/apikey"
               />
@@ -107,7 +102,7 @@ function SettingsPage() {
                     <p className="mt-1 text-xs text-muted-foreground">
                       {env?.ready
                         ? "You can fetch market data and chat with the analyst agent."
-                        : "POLYGON_API_KEY and LOVABLE_API_KEY are both required."}
+                        : "POLYGON_API_KEY and GEMINI_API_KEY are both required."}
                     </p>
                   </div>
                 </div>
@@ -124,7 +119,7 @@ function SettingsPage() {
                 <div>
                   <CardTitle className="font-display text-lg">How keys are managed</CardTitle>
                   <CardDescription className="text-sm text-muted-foreground">
-                    Lovable Cloud + Vercel deployments
+                    Local + Vercel deployments
                   </CardDescription>
                 </div>
               </div>
@@ -144,9 +139,10 @@ function SettingsPage() {
                 <li className="flex gap-3">
                   <span className="flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-primary/15 text-xs font-medium text-primary">2</span>
                   <span>
-                    <strong className="text-foreground">Lovable.</strong> Open <em>Project → Settings → Secrets</em> and add{" "}
-                    <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">POLYGON_API_KEY</code>.
-                    The Lovable key is auto-managed.
+                    <strong className="text-foreground">Gemini.</strong> Get a key from{" "}
+                    <a href="https://aistudio.google.com/apikey" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-1 text-primary hover:underline">
+                      Google AI Studio <ExternalLink className="h-3 w-3" />
+                    </a>
                   </span>
                 </li>
                 <li className="flex gap-3">
@@ -154,7 +150,7 @@ function SettingsPage() {
                   <span>
                     <strong className="text-foreground">Vercel.</strong> In your project settings, add both{" "}
                     <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">POLYGON_API_KEY</code> and{" "}
-                    <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">LOVABLE_API_KEY</code> as environment variables, then redeploy.
+                    <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">GEMINI_API_KEY</code> as environment variables, then redeploy.
                   </span>
                 </li>
               </ol>
